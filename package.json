@@ -1,0 +1,25 @@
+{
+  "name": "dockerfiles",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:wyrd-team/dockerfiles.git",
+  "author": "satoruk <koyanagi@wyrd.co.jp>",
+  "license": "MIT",
+  "scripts": {
+    "info": "npm-scripts-info",
+
+    "?lint:branch": "ブランチ名のlint",
+    "lint:branch": "branch-naming-check '(master|anyenv/([^\\-]+)-([^\\-]+)(-(.+))?)'"
+  },
+  "husky": {
+    "hooks": {
+      "post-commit": "yarn lint:branch",
+      "pre-push": "yarn lint:branch"
+    }
+  },
+  "devDependencies": {
+    "@innocells/branch-naming-check": "1.0.0",
+    "husky": "3.0.4",
+    "npm-scripts-info": "0.3.9"
+  }
+}
