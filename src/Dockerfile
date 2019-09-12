@@ -1,6 +1,6 @@
 FROM wyrdteam/anyenv:latest-buster-devel AS devel
 
-USER developer
+USER developer:developers
 
 # install node 10.16.3
 RUN eval "$(anyenv init -)" \
@@ -12,6 +12,8 @@ RUN eval "$(anyenv init -)" \
 
 FROM wyrdteam/anyenv:latest-buster
 
-USER developer
-
+USER root:root
 COPY --from=devel /home/developer/.anyenv/envs/nodenv /home/developer/.anyenv/envs/nodenv
+RUN chown -R developer:developers /home/developer/.anyenv
+
+USER developer:developers
