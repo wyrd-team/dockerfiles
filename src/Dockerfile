@@ -1,6 +1,6 @@
 FROM wyrdteam/anyenv:latest-buster-ruby-2.5.1-node
 
-USER root
+USER root:root
 
 # Install fonts
 RUN apt-get update -qq \
@@ -27,4 +27,4 @@ RUN apt-get update -qq \
   && apt-get clean -y -qq \
   && rm -rf /var/lib/apt/lists/* /tmp/google-chrome-stable_current_amd64.deb
 
-USER developer
+USER developer:developers
