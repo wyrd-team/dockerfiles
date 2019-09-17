@@ -2,13 +2,21 @@ FROM debian:buster
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# install chores
+# install develop and chores
 RUN apt-get update -qq \
   && apt-get install -y \
+     # chores
      curl \
      git \
      sudo \
      vim \
+     # develop
+     build-essential \
+     default-libmysqld-dev \
+     libncurses-dev \
+     libreadline-dev \
+     libssl-dev \
+     zlib1g-dev \
   && apt-get clean -y -qq \
   && rm -rf /var/lib/apt/lists/* \
   && echo "alias ll='ls -alh'" > /etc/profile.d/aliases.sh
@@ -30,7 +38,7 @@ RUN groupadd --gid 1000 developers \
 SHELL ["/bin/bash", "-c"]
 
 # Setup developer environment
-USER developer
+USER developer:developers
 RUN anyenv install --force-init \
   && echo noswapfile >> ~/.vimrc
 
