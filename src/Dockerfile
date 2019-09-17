@@ -1,6 +1,12 @@
-FROM wyrdteam/anyenv:latest-buster-devel AS devel
+FROM wyrdteam/anyenv:latest-buster
 
 USER developer:developers
+
+# install nodenv
+RUN anyenv install nodenv \
+  && eval "$(anyenv init -)" \
+  && touch $(nodenv root)/default-packages \
+  && echo "yarn =1.17.3" >> $(nodenv root)/default-packages
 
 # install node 10.16.3
 RUN eval "$(anyenv init -)" \
@@ -9,11 +15,3 @@ RUN eval "$(anyenv init -)" \
   && nodenv global 10.16.3 \
   && ln -sfn $(nodenv root)/versions/10.16.3 $(nodenv root)/versions/10 \
   && ln -sfn $(nodenv root)/versions/10.16.3 $(nodenv root)/versions/10.16
-
-FROM wyrdteam/anyenv:latest-buster
-
-USER root:root
-COPY --from=devel /home/developer/.anyenv/envs/nodenv /home/developer/.anyenv/envs/nodenv
-RUN chown -R developer:developers /home/developer/.anyenv
-
-USER developer:developers
