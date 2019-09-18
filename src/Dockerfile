@@ -2,6 +2,9 @@ FROM wyrdteam/anyenv:latest-buster
 
 USER developer:developers
 
+ENV PATH $PATH:/home/developer/.anyenv/envs/rbenv/shims
+ENV PATH $PATH:/home/developer/.anyenv/envs/rbenv/bin
+
 # install rbenv
 RUN anyenv install rbenv
 
