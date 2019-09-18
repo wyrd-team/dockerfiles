@@ -7,3 +7,6 @@ COPY --from=node /home/developer/.anyenv/envs/nodenv /home/developer/.anyenv/env
 RUN chown -R developer:developers /home/developer/.anyenv
 
 USER developer:developers
+
+ENV PATH $PATH:/home/developer/.anyenv/envs/nodenv/shims
+ENV PATH $PATH:/home/developer/.anyenv/envs/nodenv/bin
