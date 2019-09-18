@@ -2,6 +2,9 @@ FROM wyrdteam/anyenv:latest-buster
 
 USER developer:developers
 
+ENV PATH $PATH:/home/developer/.anyenv/envs/nodenv/shims
+ENV PATH $PATH:/home/developer/.anyenv/envs/nodenv/bin
+
 # install nodenv
 RUN anyenv install nodenv \
   && eval "$(anyenv init -)" \
