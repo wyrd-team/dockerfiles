@@ -9,7 +9,7 @@
     "info": "npm-scripts-info",
 
     "?lint:branch": "ブランチ名のlint",
-    "lint:branch": "branch-naming-check '(master|anyenv/([^\\-]+)-([^\\-]+)(-(.+))?)'"
+    "lint:branch": "branch-naming-check '(master|elasticsearch/([^\\-]+)-([^\\-]+)(-(.+))?)'"
   },
   "husky": {
     "hooks": {
